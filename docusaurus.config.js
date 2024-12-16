@@ -11,7 +11,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Machnet',
-  tagline: 'Fast Networking Stack for the Rest of Us',
+  tagline: 'Machnet: Easy kernel-bypass messaging between cloud VMs',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

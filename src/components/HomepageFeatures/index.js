@@ -7,29 +7,31 @@ const FeatureList = [
     title: 'Easy to Use',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
+      <>Machnet is designed to be developer-friendly, offering an easy-to-use
+      API and pre-configured tools that simplify the setup for high-performance
+      networking applications. Its core focus is on reducing complexity while
+      providing robust, low-latency communication for distributed systems,
+      making it accessible even for developers without extensive experience in
+      high-performance networking.</> 
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Blazingly fast',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+      Machnet provides applications like databases and finance an easy way to
+      access low-latency DPDK-based messaging on public cloud VMs. 750K RPS on
+      Azure at 61 us P99.9.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Test a drive!',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+      You have a go! Enjoy!
       </>
     ),
   },

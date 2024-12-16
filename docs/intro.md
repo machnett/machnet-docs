@@ -1,47 +1,29 @@
 ---
+sidebar_label: 'Machnet: Intro'
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Machnet: Easy kernel-bypass messaging between cloud VMs
 
-Let's discover **Docusaurus in less than 5 minutes** is it really 5mins?
+[![Build](https://github.com/microsoft/machnet/actions/workflows/build.yml/badge.svg?event=push)](https://github.com/microsoft/machnet)
 
-## Getting Started
+Machnet provides an easy way for applications to reduce their datacenter
+networking latency via kernel-bypass (DPDK-based) messaging. Distributed
+applications like databases and finance can use Machnet as the networking
+library to get sub-100 microsecond tail latency at high message rates, e.g.,
+**750,000 1KB request-reply messages per second on Azure F8s_v2 VMs with 61
+microsecond P99.9 round-trip latency**. We support a variety of cloud (Azure,
+AWS, GCP) and bare-metal platforms, OSs and NICs, evaluated in
+[docs/PERFORMANCE_REPORT.md](docs/PERFORMANCE_REPORT.md).
 
-Get started by **creating a new site**.
+While there are several other DPDK-based network stacks, Machnet provides the
+following unique benefits:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- Specifically designed for and tested on public cloud VM environments
+- Multiple applications on the same machine can use Machnet
+- No need for DPDK expertise, or compiling the application with DPDK
 
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+**Architecture**: Machnet runs as a separate process on all machines where the
+application is deployed and mediates access to the DPDK NIC. Applications
+interact with Machnet over shared memory with a sockets-like API. Machnet
+processes in the cluster communicate with each other using DPDK.
