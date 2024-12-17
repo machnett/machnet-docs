@@ -125,8 +125,3 @@ See [machnet.h](src/ext/machnet.h) for the full API documentation.  Applications
 - Listen on a port using `machnet_listen()`.
 - Connect to remote processes using `machnet_connect()`.
 - Send and receive messages using `machnet_send()` and `machnet_recv()`.
-
-
-## Developing Machnet
-
-See [CONTRIBUTING.md](CONTRIBUTING.md). for instructions on how to build and test Machnet.
