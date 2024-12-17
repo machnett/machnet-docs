@@ -1,3 +1,8 @@
+---
+sidebar_label: 'Machnet: Performance Report'
+sidebar_position: 3
+---
+
 # Machnet performance report
 
 **Important note: The performance results should be compared across platforms,
