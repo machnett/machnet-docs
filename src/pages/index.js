@@ -23,6 +23,14 @@ function HomepageHeader() {
             Machnet Tutorial - 5min ⏱️
           </Link>
         </div>
+        <br />
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="https://arxiv.org/abs/2502.09281"> 
+            ️Check out our white paper - probably still 5min 📜 
+          </Link>
+        </div>
       </div>
     </header>
   );

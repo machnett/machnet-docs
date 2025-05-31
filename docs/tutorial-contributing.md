@@ -3,7 +3,6 @@ sidebar_label: 'Machnet: Open source contribution'
 sidebar_position: 4
 ---
 
-
 # Contributing
 
 The codebase follows [Google's C++

@@ -1,0 +1,14 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" fill="#eaf6ff"></rect>
+  <g transform="translate(100,150)">
+    <!-- Rocket Body -->
+    <path d="M0,-80 C20,-50 20,50 0,80 C-20,50 -20,-50 0,-80" fill="#ff4a4a" stroke="#333" stroke-width="2"></path>
+    <!-- Window -->
+    <circle cx="0" cy="-30" r="10" fill="#ffffff" stroke="#333" stroke-width="2"></circle>
+    <!-- Fins -->
+    <polygon points="-20,40 -40,60 -20,60" fill="#4a90e2" stroke="#333" stroke-width="2"></polygon>
+    <polygon points="20,40 40,60 20,60" fill="#4a90e2" stroke="#333" stroke-width="2"></polygon>
+    <!-- Flame -->
+    <path d="M0,80 C10,100 10,110 0,130 C-10,110 -10,100 0,80" fill="#ffaa00" stroke="#e67300" stroke-width="2"></path>
+  </g>
+</svg>

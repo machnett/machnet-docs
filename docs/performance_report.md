@@ -9,7 +9,7 @@ sidebar_position: 3
 since the intra-platform variability (e.g., different pairs of VMs in the same
 cloud) is high.**
 
-## Single-connection request-response benchmark
+### Single-connection request-response benchmark
 
 Description: A client sends a request to a server, and the server sends a
 response back to the client. The client keeps a configurable number messages in

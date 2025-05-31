@@ -3,7 +3,9 @@ sidebar_label: 'Machnet: Intro'
 sidebar_position: 1
 ---
 
-# Machnet: Easy kernel-bypass messaging between cloud VMs
+# Introduction
+
+## Machnet: Easy kernel-bypass messaging between cloud VMs
 
 [![Build](https://github.com/microsoft/machnet/actions/workflows/build.yml/badge.svg?event=push)](https://github.com/microsoft/machnet)
 
@@ -14,7 +16,7 @@ library to get sub-100 microsecond tail latency at high message rates, e.g.,
 **750,000 1KB request-reply messages per second on Azure F8s_v2 VMs with 61
 microsecond P99.9 round-trip latency**. We support a variety of cloud (Azure,
 AWS, GCP) and bare-metal platforms, OSs and NICs, evaluated in
-[docs/PERFORMANCE_REPORT.md](docs/PERFORMANCE_REPORT.md).
+[docs/PERFORMANCE_REPORT.md](docs/performance_report.md).
 
 While there are several other DPDK-based network stacks, Machnet provides the
 following unique benefits:

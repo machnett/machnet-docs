@@ -1,0 +1,42 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E5F0FF"></stop>
+      <stop offset="1" stop-color="#C3DAF9"></stop>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.8">
+      <stop offset="0%" stop-color="#4A90E2" stop-opacity="0.3"></stop>
+      <stop offset="100%" stop-color="#4A90E2" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"></rect>
+
+  <!-- Dashboard interface panel -->
+  <rect x="150" y="120" width="500" height="320" rx="20" fill="#FFFFFF" stroke="#D0E4F8" stroke-width="2"></rect>
+  <text x="170" y="150" font-size="20" font-family="Arial" fill="#4A90E2">Software Dashboard</text>
+
+  <!-- Metrics and charts -->
+  <rect x="180" y="180" width="140" height="20" rx="10" fill="#E0ECF8"></rect>
+  <rect x="180" y="210" width="180" height="20" rx="10" fill="#D6E8F9"></rect>
+  <rect x="180" y="240" width="120" height="20" rx="10" fill="#BED9F8"></rect>
+
+  <!-- Speedometer metaphor -->
+  <circle cx="600" cy="280" r="60" fill="url(#glow)"></circle>
+  <circle cx="600" cy="280" r="40" fill="#4A90E2"></circle>
+  <line x1="600" y1="280" x2="635" y2="250" stroke="white" stroke-width="4" stroke-linecap="round"></line>
+  <text x="575" y="345" fill="#4A90E2" font-size="14" font-family="Arial">Speed</text>
+
+  <!-- Steering wheel metaphor -->
+  <circle cx="400" cy="470" r="35" fill="#D9E6F8" stroke="#4A90E2" stroke-width="4"></circle>
+  <line x1="400" y1="470" x2="400" y2="435" stroke="#4A90E2" stroke-width="4"></line>
+  <line x1="375" y1="470" x2="425" y2="470" stroke="#4A90E2" stroke-width="4"></line>
+  <text x="370" y="525" fill="#4A90E2" font-size="14" font-family="Arial">Control</text>
+
+  <!-- UI Glow overlay -->
+  <circle cx="400" cy="470" r="60" fill="url(#glow)"></circle>
+
+  <!-- Call-to-action -->
+  <rect x="320" y="540" width="160" height="40" rx="20" fill="#4A90E2"></rect>
+  <text x="350" y="565" fill="white" font-size="16" font-family="Arial">Start Test Drive</text>
+</svg>

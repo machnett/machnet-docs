@@ -5,34 +5,33 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/easy_to_use.svg').default,
     description: (
-      <>Machnet is designed to be developer-friendly, offering an easy-to-use
-      API and pre-configured tools that simplify the setup for high-performance
-      networking applications. Its core focus is on reducing complexity while
-      providing robust, low-latency communication for distributed systems,
-      making it accessible even for developers without extensive experience in
-      high-performance networking.</> 
+      <>Machnet is built with simplicity in mind. It offers a clean,
+      developer-friendly API and ready-to-use tools that streamline setup for
+      high-performance networking. Whether you're building distributed systems
+      or data pipelines, Machnet reduces complexity—so even developers new to
+      low-latency networking can get started quickly.</> 
     ),
   },
   {
     title: 'Blazingly fast',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/blazingly-fast.svg').default,
     description: (
-      <>
-      Machnet provides applications like databases and finance an easy way to
-      access low-latency DPDK-based messaging on public cloud VMs. 750K RPS on
-      Azure at 61 us P99.9.
-      </>
+      <> Machnet delivers exceptional performance out of the box. It enables
+      applications like databases and trading systems to achieve ultra-low
+      latency with DPDK-based messaging on public cloud VMs. Benchmark results:
+      750K requests per second with a 61μs P99.9 latency on Azure.  </>
     ),
   },
   {
     title: 'Test a drive!',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/test-a-drive.svg').default,
     description: (
-      <>
-      You have a go! Enjoy!
-      </>
+      <> Get hands-on with Machnet in seconds. Launch the dashboard, configure
+      your environment, and start sending real traffic. Whether you're testing
+      speed, control, or just exploring, the Test Drive puts the power of
+      Machnet in your hands—no setup headaches, just results.</>
     ),
   },
 ];

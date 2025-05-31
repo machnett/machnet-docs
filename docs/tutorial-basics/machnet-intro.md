@@ -5,8 +5,6 @@ sidebar_position: 2
 
 # Machnet: Baby steps
 
-# Steps to use Machnet
-
 ## 1. Set up two machines with two NICs each
 
 Machnet requires a dedicated NIC on each machine that it runs on. This NIC may be
