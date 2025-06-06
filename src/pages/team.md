@@ -30,7 +30,7 @@ Vahab specializes in low-latency network systems and performance benchmarking. H
 ### **Gianni Antichi** — *Technical Advisor*  
 Gianni is a Senior Lecturer at Polimi and QMUL and an expert in programmable networks and NIC offloading. He provides architectural guidance and research direction to the project.
 
-### **Kostis Kaffes** — *Systems Architect*  
+### **Kostis Kaffes** — *Technical Advisor*  
 Kostis is an assistant professor at Columbia interested in systems research.
 
 ---

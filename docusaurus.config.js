@@ -48,7 +48,7 @@ const config = {
           // Remove this to remove the "edit this page" links.
           // what this has to be?
           editUrl:
-            'https://github.com/sarsanaee/machnet-docs/tree/main',
+            'https://github.com/machnett/machnet-docs/tree/main',
         },
         blog: false, // {
         //   showReadingTime: true,
@@ -90,8 +90,8 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {to: '/team', label: 'Team', position: 'left'},
+          // {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/machnet-docs/team', label: 'Team', position: 'left'},
           // {
           //   type: 'docSidebar',
           //   id: 'team', // This should match the file name: docs/about.md
@@ -133,13 +133,13 @@ const config = {
           {
             title: 'More',
             items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
+              // {
+              //   label: 'Blog',
+              //   to: '/blog',
+              // },
               {
                 label: 'GitHub',
-                href: 'https://github.com/sarsanaee/machnet',
+                href: 'https://github.com/microsoft/machnet',
               },
               {
                 label: 'Team',
