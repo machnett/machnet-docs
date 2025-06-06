@@ -20,11 +20,11 @@ const config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/machnet-docs/',
 
-  deploymentBranch: 'main',   // Or your preferred branch
+  deploymentBranch: 'gh-pages',   // Or your preferred branch
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'machnet', // Usually your repo name.
+  organizationName: 'machnett', // Usually your GitHub org/user name.
+  projectName: 'machnet-docs', // Usually your repo name.
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
