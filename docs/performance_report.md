@@ -3,7 +3,7 @@ sidebar_label: 'Machnet: Performance Report'
 sidebar_position: 3
 ---
 
-# Machnet performance report
+# Machnet Performance Report
 
 **Important note: The performance results should be compared across platforms,
 since the intra-platform variability (e.g., different pairs of VMs in the same

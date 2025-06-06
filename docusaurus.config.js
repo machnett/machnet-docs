@@ -49,21 +49,21 @@ const config = {
           editUrl:
             'https://github.com/sarsanaee/machnet-docs/tree/main',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/sarsanaee/machnet-docs/tree/main/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false, // {
+        //   showReadingTime: true,
+        //   feedOptions: {
+        //     type: ['rss', 'atom'],
+        //     xslt: true,
+        //   },
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     'https://github.com/sarsanaee/machnet-docs/tree/main/',
+        //   // Useful options to enforce blogging best practices
+        //   onInlineTags: 'warn',
+        //   onInlineAuthors: 'warn',
+        //   onUntruncatedBlogPosts: 'warn',
+        // },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -90,6 +90,13 @@ const config = {
             label: 'Tutorial',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/team', label: 'Team', position: 'left'},
+          // {
+          //   type: 'docSidebar',
+          //   id: 'team', // This should match the file name: docs/about.md
+          //   label: 'Team',
+          //   position: 'left'
+          // },
           {
             href: 'https://github.com/microsoft/machnet',
             label: 'GitHub',
@@ -113,12 +120,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/machnet',
-              },
-              {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/machnet',
+                href: 'https://discord.gg/zCqe83UJ',
               },
               {
                 label: 'X',
@@ -137,6 +140,10 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/sarsanaee/machnet',
               },
+              {
+                label: 'Team',
+                href: '/team'
+              }
             ],
           },
         ],
