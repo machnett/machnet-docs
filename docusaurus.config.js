@@ -1,37 +1,22 @@
 // @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
-
 import {themes as prismThemes} from 'prism-react-renderer';
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Machnet',
-  tagline: 'Machnet: Easy kernel-bypass messaging between cloud VMs',
+  tagline: 'Sub-100\u00B5s kernel-bypass messaging for cloud applications',
   favicon: 'img/favicon.ico',
 
-  // Set the production url of your site here
   url: 'https://machnett.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/machnet-docs/',
 
-  deploymentBranch: 'gh-pages',   // Or your preferred branch
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'machnett', // Usually your GitHub org/user name.
-  projectName: 'machnet-docs', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
+  organizationName: 'machnett',
+  projectName: 'machnet-docs',
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -44,27 +29,9 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // what this has to be?
-          editUrl:
-            'https://github.com/machnett/machnet-docs/tree/main',
+          editUrl: 'https://github.com/machnett/machnet-docs/tree/main',
         },
-        blog: false, // {
-        //   showReadingTime: true,
-        //   feedOptions: {
-        //     type: ['rss', 'atom'],
-        //     xslt: true,
-        //   },
-        //   // Please change this to your repo.
-        //   // Remove this to remove the "edit this page" links.
-        //   editUrl:
-        //     'https://github.com/sarsanaee/machnet-docs/tree/main/',
-        //   // Useful options to enforce blogging best practices
-        //   onInlineTags: 'warn',
-        //   onInlineAuthors: 'warn',
-        //   onUntruncatedBlogPosts: 'warn',
-        // },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -75,8 +42,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      metadata: [
+        {name: 'keywords', content: 'machnet, dpdk, kernel-bypass, low-latency, networking, cloud, rdma'},
+        {name: 'description', content: 'Machnet: open-source DPDK-based messaging stack for sub-100\u00B5s latency on cloud VMs'},
+      ],
       navbar: {
         title: 'Machnet',
         logo: {
@@ -88,16 +58,14 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
-          // {to: '/blog', label: 'Blog', position: 'left'},
-          {to: '/machnet-docs/team', label: 'Team', position: 'left'},
-          // {
-          //   type: 'docSidebar',
-          //   id: 'team', // This should match the file name: docs/about.md
-          //   label: 'Team',
-          //   position: 'left'
-          // },
+          {to: '/team', label: 'Team', position: 'left'},
+          {
+            href: 'https://arxiv.org/abs/2502.09281',
+            label: 'White Paper',
+            position: 'left',
+          },
           {
             href: 'https://github.com/microsoft/machnet',
             label: 'GitHub',
@@ -109,50 +77,37 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Documentation',
             items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
+              {label: 'Overview', to: '/docs/intro'},
+              {label: 'Quick Start', to: '/docs/tutorial-basics/machnet-intro'},
+              {label: 'API Reference', to: '/docs/api-reference'},
+              {label: 'Performance', to: '/docs/performance-report'},
             ],
           },
           {
             title: 'Community',
             items: [
-              {
-                label: 'Discord',
-                href: 'https://discord.gg/zCqe83UJ',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/machnet',
-              },
+              {label: 'GitHub', href: 'https://github.com/microsoft/machnet'},
+              {label: 'Discord', href: 'https://discord.gg/zCqe83UJ'},
+              {label: 'X / Twitter', href: 'https://x.com/machnet'},
             ],
           },
           {
-            title: 'More',
+            title: 'Resources',
             items: [
-              // {
-              //   label: 'Blog',
-              //   to: '/blog',
-              // },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/microsoft/machnet',
-              },
-              {
-                label: 'Team',
-                href: '/team'
-              }
+              {label: 'White Paper', href: 'https://arxiv.org/abs/2502.09281'},
+              {label: 'Team', to: '/team'},
+              {label: 'Contributing', to: '/docs/contributing'},
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Machnet, Inc. Built with Docusaurus.`,
+        copyright: `Copyright \u00A9 ${new Date().getFullYear()} Machnet, Inc.`,
       },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['bash', 'c'],
       },
     }),
 };

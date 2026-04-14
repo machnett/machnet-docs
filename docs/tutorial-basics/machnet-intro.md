@@ -1,125 +1,165 @@
 ---
-sidebar_label: 'Machnet: Baby Steps'
+sidebar_label: 'Quick Start'
 sidebar_position: 2
 ---
 
-# Machnet: Baby steps
+# Quick Start Guide
 
-## 1. Set up two machines with two NICs each
+Get Machnet running between two cloud VMs and send your first message. This
+guide uses Azure as an example, but the steps are similar for AWS and GCP.
 
-Machnet requires a dedicated NIC on each machine that it runs on. This NIC may be
-used by multiple applications that use Machnet.
+## Prerequisites
 
-On Azure, we recommend the following steps:
+- Two cloud VMs with accelerated networking (e.g., Azure F8s_v2)
+- Docker installed on both VMs
+- A GitHub account (for pulling the Docker image)
 
-  1. Create two VMs with accelerated networking enabled. The VMs will start up with one NIC each, named `eth0`. This NIC is *never* used by Machnet.
-  2. Shut-down the VMs.
-  3. Create two new accelerated NICs from the portal, with no public IPs, and add one to each VM.
-  4. After restarting, each VM should have another NIC named `eth1`, which will be used by Machnet.
+---
 
-The `examples` directory contains detailed scripts/instructions to launch VMs for Machnet.
+## Step 1: Set Up Two VMs with Two NICs
 
-## 2. Get the Docker image 
+Machnet requires a **dedicated NIC** on each machine. This NIC is exclusively
+managed by Machnet via DPDK; your regular SSH and management traffic stays on
+the primary NIC.
 
-Pulling our prebuilt Machnet docker image from GHCR requires an auth token:
+**On Azure:**
 
- 1. Generate a Github personal access token for yourself (https://github.com/settings/tokens) with the read:packages scope. and store it in the `GITHUB_PAT` environment variable.
- 2. At `https://github.com/settings/tokens`, follow the steps to "Configure SSO" for this token.
+1. Create two VMs with accelerated networking enabled. Each VM starts with one
+   NIC (`eth0`) — this NIC is **never** used by Machnet.
+2. Shut down the VMs.
+3. Create two new accelerated NICs (no public IPs) and attach one to each VM.
+4. Restart the VMs. Each should now have an additional NIC named `eth1`.
+
+:::tip
+The `examples` directory in the Machnet repository contains detailed
+scripts and instructions for launching VMs on each cloud provider.
+:::
+
+---
+
+## Step 2: Pull the Docker Image
+
+The pre-built Machnet Docker image is hosted on GitHub Container Registry.
+
+1. Generate a [GitHub personal access token](https://github.com/settings/tokens)
+   with the `read:packages` scope.
+2. If using a GitHub org with SSO, configure SSO for the token.
 
 ```bash
-# Install packages required to try out Machnet
+# Install dependencies
 sudo apt-get update
 sudo apt-get install -y docker.io net-tools driverctl uuid-dev
 
-# Reboot like below to allow non-root users to run Docker
+# Allow non-root Docker usage
 sudo usermod -aG docker $USER && sudo reboot
 
-# We assume that the Github token is stored as GITHUB_PAT
+# Log in and pull the image
 echo ${GITHUB_PAT} | docker login ghcr.io -u <github_username> --password-stdin
 docker pull ghcr.io/microsoft/machnet/machnet:latest
 ```
 
-## 3. Start the Machnet process on both VMs
+---
 
-Using DPDK often requires unbinding the dedicated NIC from the OS. This will
-cause the NIC to disappear from tools like `ifconfig`. **Before this step,
-note down the IP and MAC address of the NIC, since we will need them
-later.**
+## Step 3: Start the Machnet Process
 
-Below, we assume that the dedicated NIC is named `eth1`.  These steps can be
-automated using a script like
-[azure_start_machnet.sh](examples/azure_start_machnet.sh) that uses the
-cloud's metadata service to get the NIC's IP and MAC address.
+Before this step, **note down the IP and MAC address** of `eth1` — the NIC will
+be unbound from the OS and will disappear from tools like `ifconfig`.
 
 ```bash
-MACHNET_IP_ADDR=`ifconfig eth1 | grep -w inet | tr -s " " | cut -d' ' -f 3`
-MACHNET_MAC_ADDR=`ifconfig eth1 | grep -w ether | tr -s " " | cut -d' ' -f 3`
+# Record NIC info
+MACHNET_IP_ADDR=$(ifconfig eth1 | grep -w inet | tr -s " " | cut -d' ' -f 3)
+MACHNET_MAC_ADDR=$(ifconfig eth1 | grep -w ether | tr -s " " | cut -d' ' -f 3)
+```
 
-# If on Azure, use driverctl to unbind the NIC instead of dpdk-devbind.py:
+**Unbind the NIC (Azure):**
+
+```bash
 sudo modprobe uio_hv_generic
 DEV_UUID=$(basename $(readlink /sys/class/net/eth1/device))
 sudo driverctl -b vmbus set-override $DEV_UUID uio_hv_generic
+```
 
-# Otherwise, use dpdk-devbind.py like so
-# sudo <dpdk_dir>/usertools/dpdk-devbind.py --bind=vfio-pci <PCIe address of dedicated NIC>
+**Unbind the NIC (other platforms):**
 
-# Start Machnet
-echo "Machnet IP address: $MACHNET_IP_ADDR, MAC address: $MACHNET_MAC_ADDR"
+```bash
+sudo <dpdk_dir>/usertools/dpdk-devbind.py --bind=vfio-pci <PCIe_address>
+```
+
+**Start Machnet on both VMs:**
+
+```bash
 git clone --recursive https://github.com/microsoft/machnet.git
 cd machnet
 ./machnet.sh --mac $MACHNET_MAC_ADDR --ip $MACHNET_IP_ADDR
-
-# Note: If you lose the NIC info, the Azure metadata server has it:
-curl -s -H Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance?api-version=2021-02-01" | jq '.network.interface[1]'
 ```
 
-## 4. Run the hello world example
+:::info
+If you lose the NIC info, Azure's metadata service can help:
+```bash
+curl -s -H Metadata:true --noproxy "*" \
+  "http://169.254.169.254/metadata/instance?api-version=2021-02-01" \
+  | jq '.network.interface[1]'
+```
+:::
 
-At this point, the Machnet container/process is running on both VMs. We can now
-test things end-to-end with a client-server application.
+---
+
+## Step 4: Run Hello World
+
+With Machnet running on both VMs, test end-to-end connectivity:
 
 ```bash
-# Build the Machnet helper library and hello_world example, on both VMs
+# Build the helper library and example (on both VMs)
 ./build_shim.sh
 cd examples
 
-# On VM #1, run the hello_world server
-./hello_world --local <eth1 IP address of VM 1>
+# VM 1: Start the server
+./hello_world --local <eth1_IP_of_VM1>
 
-# On VM #2, run the hello_world client. This should print the reply from the server.
-./hello_world --local <eth1 IP address of VM 2> --remote <eth1 IP address of VM 1>
+# VM 2: Start the client — this prints the server's reply
+./hello_world --local <eth1_IP_of_VM2> --remote <eth1_IP_of_VM1>
 ```
 
-## 5. Run the end-to-end benchmark
+---
 
-The Docker image contains a pre-built benchmark called `msg_gen`.
+## Step 5: Run the Benchmark
+
+The Docker image includes the `msg_gen` benchmark for measuring throughput and
+latency:
+
 ```bash
-MSG_GEN="docker run -v /var/run/machnet:/var/run/machnet ghcr.io/microsoft/machnet/machnet:latest release_build/src/apps/msg_gen/msg_gen"
+MSG_GEN="docker run -v /var/run/machnet:/var/run/machnet \
+  ghcr.io/microsoft/machnet/machnet:latest \
+  release_build/src/apps/msg_gen/msg_gen"
 
-# On VM #1, run the msg_gen server
-${MSG_GEN} --local_ip <eth1 IP address of VM 1>
+# VM 1: Server
+${MSG_GEN} --local_ip <eth1_IP_of_VM1>
 
-# On VM #2, run the msg_gen client
-${MSG_GEN} --local_ip <eth1 IP address of VM 2> --remote_ip <eth1 IP address of VM 1>
+# VM 2: Client (latency test — 1 message in flight)
+${MSG_GEN} --local_ip <eth1_IP_of_VM2> \
+  --remote_ip <eth1_IP_of_VM1> --msg_window 1 --tx_msg_size 1024
+
+# VM 2: Client (throughput test — 32 messages in flight)
+${MSG_GEN} --local_ip <eth1_IP_of_VM2> \
+  --remote_ip <eth1_IP_of_VM1> --msg_window 32 --tx_msg_size 1024
 ```
 
-The client should print message rate and latency percentile statistics.
-`msg_gen --help` lists all the options available.
+The client prints message rate and latency percentile statistics. Run
+`msg_gen --help` for all available options.
 
-We can also build `msg_gen` from source without DPDK or rdma_core:
+:::tip Building from source
+You can also build `msg_gen` from source without DPDK or rdma_core:
 ```bash
 cd machnet
-rm -rf build; mkdir build; cd build; cmake -DCMAKE_BUILD_TYPE=Release ..; make -j
-MSG_GEN="~/machnet/build/src/apps/msg_gen/msg_gen"
+rm -rf build && mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release .. && make -j
 ```
+:::
 
+---
 
-## Machnet API
+## Next Steps
 
-See [machnet.h](src/ext/machnet.h) for the full API documentation.  Applications use the following steps to interact with the Machnet service:
-
-- Initialize the Machnet library using `machnet_init()`.
-- In every thread, create a new shared-memory channel to Machnet using `machnet_attach()`.
-- Listen on a port using `machnet_listen()`.
-- Connect to remote processes using `machnet_connect()`.
-- Send and receive messages using `machnet_send()` and `machnet_recv()`.
+- **[API Reference](/docs/api-reference)** — Learn the full Machnet C API.
+- **[Performance Report](/docs/performance-report)** — See benchmarks across cloud providers and hardware.
+- **[Contributing](/docs/contributing)** — Help improve Machnet.
