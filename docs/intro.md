@@ -79,7 +79,11 @@ communicate via DPDK.
 - **[Performance Report](performance-report)** — Detailed benchmarks across platforms.
 - **[Contributing](contributing)** — How to contribute to the project.
 
-## White Paper
+## Published at ASPLOS 2026
 
-For the full research context, read our paper on arXiv:
-[Machnet: Easy Kernel-Bypass Messaging Between Cloud VMs](https://arxiv.org/abs/2502.09281).
+Machnet has been accepted at **ASPLOS 2026** — the premier conference on
+Architectural Support for Programming Languages and Operating Systems. ASPLOS
+is one of the most selective and prestigious venues in computer systems
+research.
+
+**[Read the paper on ACM Digital Library](https://dl.acm.org/doi/abs/10.1145/3779212.3790158)**

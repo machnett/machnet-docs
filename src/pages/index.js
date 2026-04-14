@@ -4,6 +4,22 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 
+function AnnouncementBar() {
+  return (
+    <div className="announcement-bar">
+      <div className="container">
+        <Link to="https://dl.acm.org/doi/abs/10.1145/3779212.3790158" className="announcement-link">
+          <span className="announcement-badge">ASPLOS '26</span>
+          <span className="announcement-text">
+            Our paper has been accepted at ASPLOS 2026 — one of the premier venues in computer architecture and systems research.
+            Read it now &rarr;
+          </span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 function HeroSection() {
   return (
     <header className="hero-machnet">
@@ -36,7 +52,7 @@ function StatsBar() {
     { value: '750K', label: 'Requests / sec' },
     { value: '61\u00B5s', label: 'P99.9 Latency' },
     { value: '1KB', label: 'Message Size' },
-    { value: '3+', label: 'Cloud Providers' },
+    { value: 'ASPLOS', label: 'Published At' },
   ];
   return (
     <section className="stats-bar">
@@ -276,8 +292,8 @@ function CTASection() {
           </Link>
           <Link
             className="button button--lg button--outline-cta"
-            to="https://arxiv.org/abs/2502.09281">
-            Read the White Paper
+            to="https://dl.acm.org/doi/abs/10.1145/3779212.3790158">
+            Read the ASPLOS '26 Paper
           </Link>
         </div>
       </div>
@@ -291,6 +307,7 @@ export default function Home() {
     <Layout
       title="High-Performance Kernel-Bypass Messaging"
       description="Machnet provides sub-100 microsecond latency messaging for distributed cloud applications using DPDK kernel-bypass. Open source, Docker-ready, no DPDK expertise required.">
+      <AnnouncementBar />
       <HeroSection />
       <StatsBar />
       <WhyMachnet />

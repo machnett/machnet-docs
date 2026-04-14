@@ -62,8 +62,8 @@ const config = {
           },
           {to: '/team', label: 'Team', position: 'left'},
           {
-            href: 'https://arxiv.org/abs/2502.09281',
-            label: 'White Paper',
+            href: 'https://dl.acm.org/doi/abs/10.1145/3779212.3790158',
+            label: 'ASPLOS \'26 Paper',
             position: 'left',
           },
           {
@@ -96,7 +96,7 @@ const config = {
           {
             title: 'Resources',
             items: [
-              {label: 'White Paper', href: 'https://arxiv.org/abs/2502.09281'},
+              {label: 'ASPLOS \'26 Paper', href: 'https://dl.acm.org/doi/abs/10.1145/3779212.3790158'},
               {label: 'Team', to: '/team'},
               {label: 'Contributing', to: '/docs/contributing'},
             ],

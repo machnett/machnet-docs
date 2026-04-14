@@ -77,6 +77,62 @@ code {
   font-weight: 500;
 }
 
+/* ───────── Announcement bar ───────── */
+.announcement-bar {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  padding: 0.75rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.announcement-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #1c1917 !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.announcement-link:hover {
+  color: #1c1917 !important;
+  text-decoration: none !important;
+}
+
+.announcement-link:hover .announcement-text {
+  text-decoration: underline;
+}
+
+.announcement-badge {
+  display: inline-block;
+  background: #1c1917;
+  color: #fbbf24;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.announcement-text {
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .announcement-bar {
+    padding: 0.6rem 1rem;
+  }
+  .announcement-link {
+    font-size: 0.85rem;
+  }
+}
+
 /* ───────── Hero section ───────── */
 .hero-machnet {
   background: var(--machnet-gradient);
