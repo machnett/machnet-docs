@@ -5,7 +5,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Machnet',
   tagline: 'Sub-100\u00B5s kernel-bypass messaging for cloud applications',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   url: 'https://machnett.github.io',
   baseUrl: '/machnet-docs/',
